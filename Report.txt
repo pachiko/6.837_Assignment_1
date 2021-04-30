@@ -1,0 +1,18 @@
+- Always ensure triangle vertices are counter-clockwise. That also depends on sweep direction.
+- Do not reinitialize binormals after each curve segment, but only at the beginning of a spline.
+- Use basis matrices to interpolate splines. Faster and tidier.
+- Creating a Vector4f from Vector3f requires a specific w-component. Do not leave it blank.
+- The math trick for spline basis conversion can be applied to deriving the transformation of normals.
+
+P = G_1B_1T = G_1B_1(B_2[-1]B_2])T;
+G_2 = G_1B_1B_2[-1];
+
+(N1.t)(T1) = 0
+N1.t(M[-1] M)T1 = 0
+(N1.t M[-1])(M T1) = 0
+(N1.t M[-1])(T2) = 0
+(N2.t)(T2) = 0
+
+N2.t = N1.t M[-1]
+N2 = (N1.t M[-1])t
+N2 = M[-1]t N1
